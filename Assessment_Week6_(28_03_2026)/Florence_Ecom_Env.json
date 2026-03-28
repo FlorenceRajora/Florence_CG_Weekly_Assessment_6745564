@@ -1,0 +1,55 @@
+{
+  "id": "421dd3a0-98e0-46b1-8c0b-801bd25b8637",
+  "name": "Florence_Ecom_Env",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "https://www.shoppersstack.com/shopping",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "ShopperId",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "ProductId",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "ItemId",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "addressId",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "orderId",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "ReviewId",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}

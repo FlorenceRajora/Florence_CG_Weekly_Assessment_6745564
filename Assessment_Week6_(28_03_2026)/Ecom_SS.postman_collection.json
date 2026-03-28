@@ -1,0 +1,226 @@
+{
+  "info": {
+    "name": "Ecom_SS_Florence",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "Login User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"baseUrl\", \"https://www.shoppersstack.com/shopping\");",
+                  "let response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"token\", response.data.jwtToken);",
+                  "pm.environment.set(\"ShopperId\", response.data.userId);",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"florence.rajora@gmail.com\",\n  \"password\": \"Password@123\",\n  \"role\": \"SHOPPER\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "login"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get Products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"ProductId\", response.data[0].productId);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/products/alpha",
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "alpha"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Wishlist",
+      "item": [
+        {
+          "name": "Add To Wishlist",
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}" }] },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": {{ProductId}},\n  \"quantity\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shoppers/{{ShopperId}}/wishlist",
+              "host": ["{{baseUrl}}"],
+              "path": ["shoppers", "{{ShopperId}}", "wishlist"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Cart",
+      "item": [
+        {
+          "name": "Add to Cart",
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}" }] },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": {{ProductId}},\n  \"quantity\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shoppers/{{ShopperId}}/carts",
+              "host": ["{{baseUrl}}"],
+              "path": ["shoppers", "{{ShopperId}}", "carts"]
+            }
+          }
+        },
+        {
+          "name": "Get Cart",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"ItemId\", response.data[0].itemId);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}" }] },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/shoppers/{{ShopperId}}/carts",
+              "host": ["{{baseUrl}}"],
+              "path": ["shoppers", "{{ShopperId}}", "carts"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Address",
+      "item": [
+        {
+          "name": "Add Address",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = JSON.parse(responseBody);",
+                  "pm.environment.set(\"addressId\", response.data.addressId);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}" }] },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"buildingInfo\": \"House No. 45\",\n  \"city\": \"Jaipur\",\n  \"country\": \"India\",\n  \"landmark\": \"Near Central Park\",\n  \"name\": \"Florence Rajora\",\n  \"phone\": \"9876543210\",\n  \"pincode\": \"302001\",\n  \"state\": \"Rajasthan\",\n  \"streetInfo\": \"C-Scheme\",\n  \"type\": \"Home\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shoppers/{{ShopperId}}/address",
+              "host": ["{{baseUrl}}"],
+              "path": ["shoppers", "{{ShopperId}}", "address"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Order",
+      "item": [
+        {
+          "name": "Place Order",
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}" }] },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": {\n    \"addressId\": {{addressId}},\n    \"name\": \"Florence Rajora\",\n    \"city\": \"Jaipur\",\n    \"state\": \"Rajasthan\",\n    \"country\": \"India\"\n  },\n  \"paymentMode\": \"COD\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/shoppers/{{ShopperId}}/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["shoppers", "{{ShopperId}}", "orders"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Post Review",
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{token}}" }] },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Great product quality with fast delivery and excellent packaging.\",\n  \"heading\": \"Iphone\",\n  \"rating\": 5,\n  \"shopperId\": {{ShopperId}},\n  \"shopperName\": \"Florence Rajora\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reviews/?productId={{ProductId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["reviews"],
+              "query": [{ "key": "productId", "value": "{{ProductId}}" }]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
