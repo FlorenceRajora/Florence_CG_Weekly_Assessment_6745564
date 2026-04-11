@@ -4,8 +4,8 @@
     "password": "password123"
   },
   "createBooking": {
-    "firstname": "James",
-    "lastname": "Brown",
+    "firstname": "Florence",
+    "lastname": "Rajora",
     "totalprice": 250,
     "depositpaid": true,
     "bookingdates": {
@@ -15,8 +15,8 @@
     "additionalneeds": "Breakfast"
   },
   "updateBooking": {
-    "firstname": "Robert",
-    "lastname": "Smith",
+    "firstname":"Harshita",
+    "lastname": "Rajora",
     "totalprice": 400,
     "depositpaid": false,
     "bookingdates": {
@@ -26,7 +26,7 @@
     "additionalneeds": "Lunch and Dinner"
   },
   "filterByName": {
-    "firstname": "James",
-    "lastname": "Brown"
+    "firstname": "Florence",
+    "lastname": "Rajora"
   }
 }
