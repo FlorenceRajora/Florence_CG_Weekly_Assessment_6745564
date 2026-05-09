@@ -1,3 +1,4 @@
+import {test,expect} from "@playwright/test";
 class home {
 
     async load_page(page){
@@ -13,7 +14,7 @@ class home {
     }
 
     async product2(page){
-        await page.locator('(//a[contains(text(),"Add to cart")])[2]').click();
+        await page.locator('(//a[contains(text(),"Add to cart")])[3]').click();
     }
 
     async product3(page){

@@ -27,8 +27,6 @@ test("E2E Shopping Flow with Screenshot", async ({ page }) => {
 
   const email = `user${Date.now()}@gmail.com`;
 
-  const email = `user${Date.now()}@gmail.com`;
-
   await h.load_page(page);
 
   await h.login(page);

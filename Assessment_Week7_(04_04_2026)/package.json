@@ -1,0 +1,23 @@
+{
+  "name": "florence_cg_weekly_assessment_6745564",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlorenceRajora/Florence_CG_Weekly_Assessment_6745564.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/FlorenceRajora/Florence_CG_Weekly_Assessment_6745564/issues"
+  },
+  "homepage": "https://github.com/FlorenceRajora/Florence_CG_Weekly_Assessment_6745564#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.5.2"
+  }
+}

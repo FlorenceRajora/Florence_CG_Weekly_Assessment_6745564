@@ -6,6 +6,11 @@ import registration from "../project_object_model/sce2registerpom.spec";
 import contact from "../project_object_model/sce2contactuspom.spec";
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const filePath = path.resolve(__dirname, "../utility/scenario2.json");
 const file_details = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
